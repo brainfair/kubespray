@@ -206,9 +206,27 @@ items:
                   host: 127.0.0.1
                   path: /status
                   port: 6784
+{% if weave_cpu_requests != "" or weave_memory_requests !="" or weave_cpu_limit !="" or weave_memory_limit !="" %}
               resources:
+{% if weave_cpu_requests != "" or weave_memory_requests !="" %}
                 requests:
-                  cpu: 50m
+{% if weave_cpu_requests != "" %}
+                  cpu: {{ weave_cpu_requests }}
+{% endif %}
+{% if weave_memory_requests !="" %}
+                  memory: {{ weave_memory_requests }}
+{% endif %}
+{% endif %}
+{% if weave_cpu_limit !="" or weave_memory_limit !="" %}
+                limits:
+{% if weave_cpu_limit !="" %}
+                  cpu: {{ weave_cpu_limit }}
+{% endif %}
+{% if weave_memory_limit !="" %}
+                  memory: {{ weave_memory_limit }}
+{% endif %}
+{% endif %}
+{% endif %}
               securityContext:
                 privileged: true
               volumeMounts:
@@ -236,9 +254,27 @@ items:
 {% endif %}                       
               image: {{ weave_npc_image_repo }}:{{ weave_npc_image_tag }}
               imagePullPolicy: {{ k8s_image_pull_policy }}
+{% if weave_npc_cpu_requests != "" or weave_npc_memory_requests !="" or weave_npc_cpu_limits !="" or weave_npc_memory_limits !="" %}
               resources:
+{% if weave_npc_cpu_requests != "" or weave_npc_memory_requests !="" %}
                 requests:
-                  cpu: 50m
+{% if weave_npc_cpu_requests != "" %}
+                  cpu: {{ weave_npc_cpu_requests }}
+{% endif %}
+{% if weave_npc_memory_requests !="" %}
+                  memory: {{ weave_npc_memory_requests }}
+{% endif %}
+{% endif %}
+{% if weave_npc_cpu_limit !="" or weave_npc_memory_limit !="" %}
+                limits:
+{% if weave_npc_cpu_limit !="" %}
+                  cpu: {{ weave_npc_cpu_limit }}
+{% endif %}
+{% if weave_npc_memory_limit !="" %}
+                  memory: {{ weave_npc_memory_limit }}
+{% endif %}
+{% endif %}
+{% endif %}
               securityContext:
                 privileged: true
               volumeMounts:

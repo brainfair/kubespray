@@ -62,3 +62,13 @@
 
 # Extra variables for weave_npc that passing to launch.sh, useful for change log level, ex --log-level=error
 # weave_npc_extra_args: ~
+
+# Limits for apps
+# weave_memory_limit: 500M
+# weave_cpu_limit: 200m
+# weave_memory_requests: 64M
+# weave_cpu_requests: 50m
+# weave_npc_memory_limit: 500M
+# weave_npc_cpu_limit: 200m
+# weave_npc_memory_requests: 64M
+# weave_npc_cpu_requests: 50m
